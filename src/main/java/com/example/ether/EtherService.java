@@ -1,10 +1,10 @@
 package com.example.ether;
 
+import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.web3j.protocol.Web3j;
 import org.web3j.protocol.core.DefaultBlockParameterName;
-import org.web3j.protocol.core.DefaultBlockParameterNumber;
 import org.web3j.protocol.core.methods.response.EthBlock;
 import org.web3j.protocol.core.methods.response.Transaction;
 import org.web3j.protocol.http.HttpService;
@@ -19,8 +19,12 @@ public class EtherService implements SearchService {
 
     @Value("${alchemy.api}")
     String api;
+    Web3j web3;
 
-    Web3j web3 = Web3j.build(new HttpService(api));
+    @PostConstruct
+    private void initialize() {
+        web3 = Web3j.build(new HttpService(api.toString()));
+    }
 
     @Override
     public Map<String, String> getBlockByHash(String blockHash) {
