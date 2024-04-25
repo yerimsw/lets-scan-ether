@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/bootstrap.min.css}">
+</head>
+<body>
+    <nav class="navbar navbar-dark bg-dark">
+        <a class="navbar-brand" th:href="@{/}">Let's scan Ether</a>
+    </nav>
+    <table class="table">
+        <tr th:each="entry:${map.entrySet()}">
+            <td th:text="${entry.getKey()}">Key</td>
+            <td th:text="${entry.getValue()}">Value</td>
+        </tr>
+    </table>
+    <div class="d-flex justify-content-center">
+        <a th:href="@{/}"><button type="button" class="btn-dark">Home</button></a>
+    </div>
+</body>
+</html>

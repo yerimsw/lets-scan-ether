@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Let's scan Ether</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/bootstrap.min.css}">
+</head>
+<body>
+    <nav class="navbar navbar-dark bg-dark">
+        <a class="navbar-brand" th:href="@{/}">Let's scan Ether</a>
+    </nav>
+    <div class="d-flex justify-content-center">
+        <form id="form" method="post" th:action="@{/search/block}">
+            <label for="typeSelect">Select search type</label>
+            <select id="typeSelect" class="form-select" onchange="changeFormAction()">
+                <option name="blhash" value="/search/block">Block Hash</option>
+                <option name="txhash" value="/search/transaction">Transaction Hash</option>
+                <option name="addrhash" value="/search/address">Wallet Address</option>
+            </select>
+
+            <input type="text" id="text-input" name="blhash" placeholder="Enter here!">
+            <button type="submit" class="btn-dark">scan</button>
+        </form>
+    </div>
+
+</body>
+<script th:inline="javascript">
+    function changeFormAction() {
+        try {
+            // 선택된 option의 name과 value를 각각 text input의 name과 form action 경로로 지정한다.
+            var hrefValue = document.getElementById('typeSelect').value;
+            var typeName = document.getElementById('typeSelect').selectedOptions[0].getAttribute('name');
+
+            document.getElementById('form').action = hrefValue;
+            document.getElementById('text-input').name = typeName;
+        } catch (e) {
+            console.error('Error: ', e.message);
+        }
+    }
+</script>
+</html>
