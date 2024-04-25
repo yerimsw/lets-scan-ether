@@ -60,6 +60,7 @@ public class EtherService implements SearchService {
         }
 
         if (tx != null) {
+            attributes.put("txHash", txHash);
             attributes.put("blockHash", tx.getBlockHash());
             attributes.put("blockNumber", tx.getBlockNumber().toString());
             attributes.put("from", tx.getFrom());

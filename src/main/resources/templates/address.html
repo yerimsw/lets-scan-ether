@@ -2,13 +2,14 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Let's scan Ether - Wallet Address</title>
     <link rel="stylesheet" type="text/css" th:href="@{/bootstrap.min.css}">
 </head>
 <body>
     <nav class="navbar navbar-dark bg-dark">
         <a class="navbar-brand" th:href="@{/}">Let's scan Ether</a>
     </nav>
+    <div style="margin: 10px"><h3>Result</h3></div>
     <table class="table">
         <tr th:each="entry:${map.entrySet()}">
             <td th:text="${entry.getKey()}">Key</td>
